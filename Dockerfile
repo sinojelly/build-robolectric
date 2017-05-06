@@ -114,10 +114,10 @@ RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_
 
 # google apis
 # Please keep these in descending order!
-#RUN echo y | android update sdk --no-ui --all --filter addon-google_apis-google-23 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter addon-google_apis-google-23 | grep 'package installed'
 
 # Copy install tools
-COPY tools /opt/tools
+#COPY tools /opt/tools
 
 #Copy accepted android licenses
 COPY licenses ${ANDROID_HOME}/licenses
@@ -136,7 +136,10 @@ RUN \
   mkdir -p /usr/local/src/robolectric && cd /usr/local/src/robolectric && \
   wget https://github.com/robolectric/robolectric/archive/robolectric-3.3.2.tar.gz -qO - | tar -xz
 
+# Compile robolectric
+RUN cd /usr/local/src/robolectric/robolectric-robolectric-3.3.2/scripts && ./install-dependencies.rb
+RUN cd /usr/local/src/robolectric/robolectric-robolectric-3.3.2 && ./gradlew clean assemble install compileTest
 
-WORKDIR /usr/local/src/robolectric
- 
+WORKDIR /usr/local/src/robolectric/robolectric-robolectric-3.3.2
+
 CMD ["bash"]
