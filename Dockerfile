@@ -154,7 +154,7 @@ RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_
 #addon-google_apis-google-22
 
 #addon-google_apis-google-21
-
+ 
 #extra-android-support
 
 #extra-android-m2repository
@@ -192,7 +192,7 @@ ENV PATH ${PATH}:/opt/tools
 
 # Update SDK
 
-RUN /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
+RUN chmod 755 /opt/tools/android-accept-licenses.sh && /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
 
 RUN chown -R 1000:1000 $ANDROID_HOME
 
