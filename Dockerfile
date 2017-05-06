@@ -151,7 +151,6 @@ RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_
 #addon-google_apis-google-24
 
 #addon-google_apis-google-23
-
 #addon-google_apis-google-22
 
 #addon-google_apis-google-21
@@ -182,11 +181,11 @@ RUN echo y | android update sdk --no-ui --all --filter addon-google_apis-google-
 
 
 # Copy install tools
-#COPY tools /opt/tools
+COPY tools /opt/tools
 
 
 #Copy accepted android licenses
-#COPY licenses ${ANDROID_HOME}/licenses
+COPY licenses ${ANDROID_HOME}/licenses
 
 
 ENV PATH ${PATH}:/opt/tools
