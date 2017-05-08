@@ -196,7 +196,7 @@ RUN chmod 755 /opt/tools/android-accept-licenses.sh && /opt/tools/android-accept
 
 RUN chown -R 1000:1000 $ANDROID_HOME
 
-VOLUME ["/opt/android-sdk-linux"]
+#VOLUME ["/opt/android-sdk-linux"]
 
 
 
@@ -211,6 +211,9 @@ RUN cd /usr/local/src/robolectric/robolectric-robolectric-3.3.2/scripts && ./ins
 RUN cd /usr/local/src/robolectric/robolectric-robolectric-3.3.2 && ./gradlew clean assemble install compileTest && \
     cd /usr/local/src/robolectric/robolectric-robolectric-3.3.2 && ./gradlew clean 
 
-WORKDIR /usr/local/src/robolectric/robolectric-robolectric-3.3.2
+#WORKDIR /usr/local/src/robolectric/robolectric-robolectric-3.3.2
+
+WORKDIR /robolectric_src
+VOLUME /robolectric_src
 
 CMD ["bash"]
