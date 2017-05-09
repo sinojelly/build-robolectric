@@ -186,13 +186,13 @@ COPY tools /opt/tools
 
 #Copy accepted android licenses
 COPY licenses ${ANDROID_HOME}/licenses
-
+RUN chmod 755 /opt/tools/android-accept-licenses.sh
 
 ENV PATH ${PATH}:/opt/tools
 
 # Update SDK
 
-RUN chmod 755 /opt/tools/android-accept-licenses.sh && /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
+RUN /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
 
 RUN chown -R 1000:1000 $ANDROID_HOME
 
